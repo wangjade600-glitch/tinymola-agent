@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: tinymola-agent
+    env: node
+    region: singapore
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    plan: free
+    envVars:
+      - key: NODE_VERSION
+        value: 20.0.0
+      - key: JWT_SECRET
+        value: tinymola-agent-prod-secret-2026
+      - key: DB_PATH
+        value: /var/data/tinymola.db
+      - key: NODE_ENV
+        value: production
+    disk:
+      name: tinymola-data
+      mountPath: /var/data
+      sizeGB: 1
